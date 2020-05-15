@@ -1,3 +1,13 @@
+## 注意(原基础上添加)：
+水平横向布局时，为了防止从右往左滑动速率过快么，一次滑动多页出现跳页的现象，因此我在PagerGridLayoutManager中scrollHorizontallyBy函数添加
+```java
+    public int scrollHorizontallyBy(int dx, RecyclerView.Recycler recycler, RecyclerView.State
+            state) {
+        int newX = mOffsetX + dx;
+        if (dx<-1000)dx=dx/2;//修改左滑dx速率负数过大,出现调页问题 by lhw
+        int result = dx;
+```
+
 # PagerLayoutManager
 
 具有分页功能的 Recyclerview 布局管理器，主打分页，可以替代部分场景下的网格布局，线性布局，以及一些简单的ViewPager，但也有一定的局限性，请选择性使用。
